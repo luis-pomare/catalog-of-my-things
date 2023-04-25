@@ -39,8 +39,6 @@ def add_item_genre
 
   new_genre = Genre.new(new_g, album_name, on_spotify)
   @genres2 << new_genre
-  # saveclass = Save.new
-  # saveclass.save_genres_to_json
 
   puts "#{new_genre.name} (#{new_genre.album_name}) added to genres"
 end
