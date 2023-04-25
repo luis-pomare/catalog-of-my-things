@@ -1,12 +1,12 @@
 class App
-    attr_accessor :items
-  
-    def initialize
-      @games = []
-      @functions = {
-        10 => :add_item_game,
-      }
-    end
+  attr_accessor :items
+
+  def initialize
+    @games = []
+    @functions = {
+      10 => :add_item_game
+    }
+  end
 
   def trigger(int)
     send(@functions[int])
@@ -17,14 +17,10 @@ class App
     is_number ? gets.chomp.to_i : gets.chomp
   end
 
-  def add_item_book()
-    print 'Add a date: '
-    date = gets.chomp
-  end
-
   def add_item_game()
     multiplayer = input_getter('Is this game multiplayer? [Y/N]: ')
     return add_item_game if multiplayer.capitalize != 'Y' && multiplayer.capitalize != 'N'
+
     multiplayer_bool = multiplayer.capitalize == 'Y'
 
     print 'Last time played date (yyyy-mm-dd): '

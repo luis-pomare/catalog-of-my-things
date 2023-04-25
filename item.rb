@@ -7,7 +7,7 @@ class Item
     @publish_date = publish_date
     @id = Random.rand(0..1000)
     @archived = false
-    @author = add_author()
+    @author = add_author
   end
 
   def can_be_archived?
@@ -31,5 +31,5 @@ class Item
   end
 end
 
-i= Item.new('2020-2-10')
+i = Item.new('2020-2-10')
 puts i.author.first_name

@@ -14,7 +14,7 @@ def options
 end
 
 def main
-  @app = App.new()
+  @app = App.new
   options
   option = gets.chomp.to_i
   valid_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
