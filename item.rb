@@ -1,25 +1,34 @@
 require 'date'
+require_relative 'genre'
 
 class Item
   attr_reader :publish_date
 
   def initialize(publish_date)
     @publish_date = publish_date
+    @genre =nil
     @id = Random.rand(0..1000)
     @archived = false
   end
 
   def can_be_archived?
     now = Date.today
-    before = Date.civil(publish_date)
+    before = Date.parse(publish_date.to_s)
     difference = (now - before).to_i
     difference_year = difference / 365
-    return true if difference_year > 10
-
-    false
+    difference_year >= 10
   end
 
   def move_to_archive()
     @archived = can_be_archived?
   end
+  def add_genre(new_genre)
+    @genre= Genre.new(new_genre)
+  end
 end
+
+# nn = Item.new(Date.new(2020, 12, 12))
+# p nn.can_be_archived?
+gen = Item.new(Date.new(2020, 12, 12))
+gen.add_genre('rock')
+p gen
