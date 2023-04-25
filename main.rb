@@ -1,4 +1,6 @@
-require './item'
+require './game'
+require './author'
+require './app'
 
 puts 'Welcome to Catalog of my things!'
 
@@ -11,19 +13,8 @@ def options
   puts ['11 - Exit']
 end
 
-def trigger(int)
-  functions = {
-    8 => :add_item_book
-  }
-  send(functions[int])
-end
-
-def add_item_book()
-  print 'Add a date: '
-  date = gets.chomp
-end
-
 def main
+  @app = App.new()
   options
   option = gets.chomp.to_i
   valid_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -31,7 +22,7 @@ def main
     if option == 11
       puts 'Thanks for using this app'
     else
-      trigger(option)
+      @app.trigger(option)
       main
     end
   else
