@@ -10,6 +10,7 @@ class Item
     @archived = false
     @author = add_author
     @genre = add_genre
+    @label = add_label
   end
 
   def can_be_archived?
@@ -43,5 +44,13 @@ class Item
     return unless label.items.include?(self) == false
 
     label.add_item(self)
+  end
+
+  def add_label
+    print 'Enter label name: '
+    label_name = gets.chomp
+    print 'Enter label color: '
+    label_color = gets.chomp
+    Label.new(label_name, label_color)
   end
 end

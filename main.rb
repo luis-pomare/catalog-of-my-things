@@ -5,6 +5,8 @@ require './item'
 require './music_album'
 require './genre'
 require 'date'
+require './book'
+require './label'
 
 puts 'Welcome to Catalog of my things!'
 
