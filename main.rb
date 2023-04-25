@@ -1,7 +1,11 @@
+require './game'
+require './author'
+require './app'
 require './item'
 require './music_album'
 require './genre'
 require './save_json'
+
 puts 'Welcome to Catalog of my things!'
 
 def options
@@ -22,7 +26,6 @@ def trigger(int)
   send(functions[int])
 end
 
-# --------------------anas599--------------------
 def add_item_genre
   @genres2 ||= []
   print 'Add a genre: '
@@ -50,8 +53,8 @@ def list_genres
   end
 end
 
-# --------------------anas599--------------------
 def main
+  @app = App.new
   options
   option = gets.chomp.to_i
   valid_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -59,7 +62,7 @@ def main
     if option == 11
       puts 'Thanks for using this app'
     else
-      trigger(option)
+      @app.trigger(option)
       main
     end
   else
