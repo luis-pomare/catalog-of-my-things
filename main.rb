@@ -22,11 +22,6 @@ def trigger(int)
   send(functions[int])
 end
 
-def add_item_book()
-  print 'Add a date: '
-  date = gets.chomp
-end
-
 # --------------------anas599--------------------
 def add_item_genre
   @genres2 ||= []

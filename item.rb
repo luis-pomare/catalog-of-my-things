@@ -1,5 +1,4 @@
 require 'date'
-require_relative 'genre'
 
 class Item
   attr_reader :publish_date, :label
@@ -23,10 +22,6 @@ class Item
     @archived = can_be_archived?
   end
 
-  def add_genre(new_genre)
-    @genre = Genre.new(new_genre)
-  end
-
   def label=(label)
     @label = label
     return unless label.items.include?(self) == false
@@ -34,9 +29,3 @@ class Item
     label.add_item(self)
   end
 end
-
-# nn = Item.new(Date.new(2020, 12, 12))
-# p nn.can_be_archived?
-gen = Item.new(Date.new(2020, 12, 12))
-gen.add_genre('rock')
-p gen
