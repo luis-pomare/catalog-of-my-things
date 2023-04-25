@@ -12,6 +12,18 @@ class App
   def trigger(int)
     send(@functions[int])
   end
+  
+  def list_genres
+    if @genres2.nil? || @genres2.empty?
+      puts 'No genres have been added yet.'
+    else
+      puts 'Current genres:'
+      @genres2.each_with_index do |genre, index|
+        puts "#{index + 1}. Genre:#{genre.name}. Album Name:#{genre.album_name}. On Spotify?#{genre.on_spotify}"
+      end
+    end
+  end
+
 
   def input_getter(msj, is_number: false)
     print msj

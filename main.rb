@@ -17,42 +17,6 @@ def options
   puts ['11 - Exit']
 end
 
-def trigger(int)
-  functions = {
-    4 => :list_genres,
-    8 => :add_item_book,
-    9 => :add_item_genre
-  }
-  send(functions[int])
-end
-
-def add_item_genre
-  @genres2 ||= []
-  print 'Add a genre: '
-  new_g = gets.chomp
-  print 'Add the name of the album for this genre: '
-  album_name = gets.chomp
-  print 'Is this album on spotify? (y/n): '
-  on_spotify = gets.chomp
-  on_spotify = on_spotify == 'y'
-
-  new_genre = Genre.new(new_g, album_name, on_spotify)
-  @genres2 << new_genre
-
-  puts "#{new_genre.name} (#{new_genre.album_name}) added to genres"
-end
-
-def list_genres
-  if @genres2.nil? || @genres2.empty?
-    puts 'No genres have been added yet.'
-  else
-    puts 'Current genres:'
-    @genres2.each_with_index do |genre, index|
-      puts "#{index + 1}. Genre:#{genre.name}. Album Name:#{genre.album_name}. On Spotify?#{genre.on_spotify}"
-    end
-  end
-end
-
 def main
   @app = App.new
   options
