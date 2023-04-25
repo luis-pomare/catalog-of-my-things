@@ -26,6 +26,7 @@ def add_item_book()
   print 'Add a date: '
   date = gets.chomp
 end
+
 # --------------------anas599--------------------
 def add_item_genre
   @genres2 ||= []
@@ -35,7 +36,7 @@ def add_item_genre
   album_name = gets.chomp
   print 'Is this album on spotify? (y/n): '
   on_spotify = gets.chomp
-  on_spotify = on_spotify == 'y' ? true : false
+  on_spotify = on_spotify == 'y'
 
   new_genre = Genre.new(new_g, album_name, on_spotify)
   @genres2 << new_genre
@@ -53,6 +54,7 @@ def list_genres
     end
   end
 end
+
 # --------------------anas599--------------------
 def main
   options

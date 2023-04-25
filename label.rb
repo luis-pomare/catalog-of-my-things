@@ -1,17 +1,17 @@
-require_relative "item"
+require_relative 'item'
 
 class Label
   attr_reader :title, :color
 
-  def initialize (title, color)
+  def initialize(title, color)
     @id = Random.rand(0..1000)
     @items = []
     @title = title
     @color = color
   end
 
-  def add_item (item)
+  def add_item(item)
     @items << item if @items.include?(item) == false
-    item.label=(self)
+    item.label = (self)
   end
 end

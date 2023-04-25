@@ -2,11 +2,11 @@ require 'date'
 require_relative 'genre'
 
 class Item
-  attr_reader :publish_date
+  attr_reader :publish_date, :label
 
   def initialize(publish_date)
     @publish_date = publish_date
-    @genre =nil
+    @genre = nil
     @id = Random.rand(0..1000)
     @archived = false
   end
@@ -22,8 +22,16 @@ class Item
   def move_to_archive()
     @archived = can_be_archived?
   end
+
   def add_genre(new_genre)
-    @genre= Genre.new(new_genre)
+    @genre = Genre.new(new_genre)
+  end
+
+  def label=(label)
+    @label = label
+    return unless label.items.include?(self) == false
+
+    label.add_item(self)
   end
 end
 
