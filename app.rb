@@ -3,7 +3,10 @@ class App
 
   def initialize
     @games = []
+    @music_albums = []
+    @books = []
     @functions = {
+      8 => :add_item_book,
       9 => :add_item_music,
       10 => :add_item_game
     }
@@ -12,7 +15,7 @@ class App
   def trigger(int)
     send(@functions[int])
   end
-  
+
   def list_genres
     if @genres2.nil? || @genres2.empty?
       puts 'No genres have been added yet.'
@@ -23,7 +26,6 @@ class App
       end
     end
   end
-
 
   def input_getter(msj, is_number: false)
     print msj
@@ -42,8 +44,7 @@ class App
     print 'Publucation date (yyyy-mm-dd): '
     publish_date = gets.chomp
 
-    game = Game.new(multiplayer_bool, last_played_at, publish_date)
-    puts game.author.first_name
+    Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
   end
 
   def add_item_music()
@@ -54,8 +55,19 @@ class App
 
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
-    music_album = MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
-    puts music_album
-    p music_album.can_be_archived?
+    MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
+  end
+
+  def add_item_book()
+    print 'Please enter the publisher: '
+    publisher = gets.chomp
+
+    print 'Describe the cover state of the book: '
+    cover_state = gets.chomp
+
+    print 'published date (yyyy-mm-dd): '
+    publish_date = gets.chomp
+
+    Book.new(Date.new(publish_date.to_i), publisher, cover_state)
   end
 end
