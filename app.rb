@@ -4,6 +4,7 @@ class App
   def initialize
     @games = []
     @functions = {
+      9 => :add_item_music,
       10 => :add_item_game
     }
   end
@@ -31,5 +32,18 @@ class App
 
     game = Game.new(multiplayer_bool, last_played_at, publish_date)
     puts game.author.first_name
+  end
+
+  def add_item_music()
+    on_spotify = input_getter('Is this album on spotify? [Y/N]: ')
+    return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
+
+    on_spotify_boolean = on_spotify.capitalize == 'Y'
+
+    print 'published date (yyyy-mm-dd): '
+    publish_date = gets.chomp
+    music_album = MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
+    puts music_album
+    p music_album.can_be_archived?
   end
 end

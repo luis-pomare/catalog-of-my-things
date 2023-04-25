@@ -1,7 +1,5 @@
-require_relative 'item'
-require_relative 'genre'
 class MusicAlbum < Item
-  def initialize(_genre, publish_date, on_spotify)
+  def initialize(on_spotify, publish_date)
     super(publish_date)
     @on_spotify = on_spotify
   end
@@ -10,6 +8,3 @@ class MusicAlbum < Item
     super && @on_spotify
   end
 end
-
-mm = MusicAlbum.new('rock', Date.new(2020, 12, 12), true)
-p mm
