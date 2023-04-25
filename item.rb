@@ -1,10 +1,11 @@
 require 'date'
 
 class Item
-  attr_reader :publish_date, :author
+  attr_reader :publish_date, :author, :label
 
   def initialize(publish_date)
     @publish_date = publish_date
+    @genre = nil
     @id = Random.rand(0..1000)
     @archived = false
     @author = add_author
@@ -29,7 +30,11 @@ class Item
     last_name = gets.chomp
     Author.new(first_name, last_name)
   end
-end
+  
+  def label=(label)
+    @label = label
+    return unless label.items.include?(self) == false
 
-i = Item.new('2020-2-10')
-puts i.author.first_name
+    label.add_item(self)
+  end
+end
