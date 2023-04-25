@@ -1,7 +1,7 @@
 require 'date'
 
 class Item
-  attr_reader :publish_date, :author, :label
+  attr_reader :publish_date, :author, :label, :genre
 
   def initialize(publish_date)
     @publish_date = publish_date
@@ -9,6 +9,7 @@ class Item
     @id = Random.rand(0..1000)
     @archived = false
     @author = add_author
+    @genre = add_genre
   end
 
   def can_be_archived?
@@ -29,6 +30,12 @@ class Item
     print 'Insert last name: '
     last_name = gets.chomp
     Author.new(first_name, last_name)
+  end
+
+  def add_genre()
+    print 'Enter Genre : '
+    new_genre = gets.chomp
+    Genre.new(new_genre)
   end
 
   def label=(label)

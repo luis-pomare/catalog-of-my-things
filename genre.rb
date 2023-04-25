@@ -1,7 +1,5 @@
-require_relative 'item'
-require_relative 'music_album'
 class Genre
-  attr_reader :name, :id
+  attr_accessor :name
 
   def initialize(name)
     @id = Random.rand(0..1000)
