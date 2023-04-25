@@ -30,7 +30,7 @@ class Item
     last_name = gets.chomp
     Author.new(first_name, last_name)
   end
-  
+
   def label=(label)
     @label = label
     return unless label.items.include?(self) == false
