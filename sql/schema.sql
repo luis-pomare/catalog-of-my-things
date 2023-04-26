@@ -5,6 +5,14 @@ CREATE TABLE author (
   PRIMARY KEY (id)
 );
 
+CREATE TABLE label(
+  id SERIAL,
+  title varchar(150),
+  color varchar(150),
+  PRIMARY KEY (id)
+);
+
+
 CREATE TABLE item (
   id SERIAL,
   genre INT REFERENCES genre(id) NOT NULL,
@@ -19,4 +27,10 @@ CREATE TABLE game (
   id INT REFERENCES item(id) NOT NULL,
   multiplayer BOOLEAN,
   last_played_at DATE
+);
+
+CREATE TABLE book (
+  id INT REFERENCES item(id) NOT NULL,
+  publisher varchar(150),
+  cover_state varchar(150)
 );
