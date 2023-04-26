@@ -10,7 +10,9 @@ class App
     @authors = []
     @functions = {
       1 => :list_all_books,
+      2 => :list_all_album,
       3 => :list_all_games,
+      4 => :list_all_genres,
       5 => :list_all_labels,
       6 => :list_all_authors,
       7 => :add_item_book,
@@ -129,6 +131,17 @@ class App
     else
       @genre.each do |genre|
         print "Genre: '#{genre.name}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_album
+    if @music_albums.empty?
+      puts 'There are not albums created yet'
+    else
+      @music_albums.each do |album|
+        print "Albums: '#{album.label.title}' Author: '#{album.author.first_name}'"
         puts ''
       end
     end
