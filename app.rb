@@ -7,6 +7,7 @@ class App
     @books = []
     @functions = {
       3 => :list_all_games,
+      6=> :list_all_authors,
       7 => :add_item_book,
       8 => :add_item_music,
       9 => :add_item_game
@@ -78,20 +79,33 @@ class App
       puts 'There are not created games yet'
     else
       @games.each do |game|
-        print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+        print "Title: '#{game.label.title}, Author: '#{game.author.first_name} #{game.author.last_name}'"
         puts ''
       end
     end
   end
 
   def list_all_authors
-    if @games.empty?
-      puts 'There are not created games yet'
+    items = @games + @books + @music_albums
+    if items.empty?
+      puts 'There are not created Authors yet'
     else
-      @games.each do |game|
-        print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+      authors = create_authors_list(items)
+      authors.each do |author|
+        print "[Author]: '#{author}'"
         puts ''
       end
     end
+  end
+
+  def create_authors_list(items)
+    authors = []
+    items.each do |item|
+      author_full = item.author.first_name + ' ' + item.author.last_name
+      unless authors.include?(author_full)
+        authors << author_full
+      end
+    end
+    authors
   end
 end
