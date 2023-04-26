@@ -3,11 +3,7 @@ require 'spec_helper'
 describe Author do
   before :each do
     @author = Author.new('Nelson', 'Araujo')
-    @mock_item = {
-      id: 1,
-      publish_date: '2020-5-5',
-      author: {}
-    }
+    @mock_item = Item.new('2020-05-10')
   end
 
   describe '#add_item' do
@@ -18,7 +14,7 @@ describe Author do
       end
       it 'Add and author to add an instances of Author in @mock_item[@author]' do
         @author.add_item(@mock_item)
-        expect(@mock_item[:author]).to be_an_instance_of(Author)
+        expect(@mock_item.author).to be_an_instance_of(Author)
       end
     end
   end
