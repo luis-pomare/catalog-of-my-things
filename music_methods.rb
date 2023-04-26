@@ -9,8 +9,8 @@ def add_item_music()
   data = MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
   inputs(data)
   music_albums = []
-  if File.exist?('music_albums.json')
-    File.open('music_albums.json', 'r') do |f|
+  if File.exist?('./storage/music_albums.json')
+    File.open('./storage/music_albums.json', 'r') do |f|
       # rubocop:disable Security/JSONLoad
       music_albums = JSON.load(f)
       # rubocop:enable Security/JSONLoad
@@ -19,13 +19,13 @@ def add_item_music()
   end
 
   music_albums << data.to_h
-  File.write('music_albums.json', JSON.generate(music_albums), mode: 'w')
+  File.write('./storage/music_albums.json', JSON.generate(music_albums), mode: 'w')
 end
 
 def display_genre
   music_albums = []
-  if File.exist?('music_albums.json')
-    File.open('music_albums.json', 'r') do |f|
+  if File.exist?('./storage/music_albums.json')
+    File.open('./storage/music_albums.json', 'r') do |f|
       # rubocop:disable Security/JSONLoad
       music_albums = JSON.load(f)
       # rubocop:enable Security/JSONLoad
@@ -39,8 +39,8 @@ end
 
 def display_albums
   music_albums = []
-  if File.exist?('music_albums.json')
-    File.open('music_albums.json', 'r') do |f|
+  if File.exist?('./storage/music_albums.json')
+    File.open('./storage/music_albums.json', 'r') do |f|
       # rubocop:disable Security/JSONLoad
       music_albums = JSON.load(f)
       # rubocop:enable Security/JSONLoad
