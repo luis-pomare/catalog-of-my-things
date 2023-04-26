@@ -36,7 +36,7 @@ class Storage
     retrieve_rentals
   end
 
-def create_file(array, name)
+  def create_file(array, name)
     array_hash = []
     array.each do |item|
       array_hash << item_to_json(item)
@@ -56,5 +56,4 @@ def create_file(array, name)
     end
     json_obj
   end
-
 end
