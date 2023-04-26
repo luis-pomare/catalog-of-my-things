@@ -33,7 +33,7 @@ def write_files
 end
 
 def main
-  if @app == nil
+  if @app.nil?
     @app = App.new
     read_files(@app)
   end
