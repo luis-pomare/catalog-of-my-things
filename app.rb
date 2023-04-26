@@ -1,14 +1,16 @@
 class App
-  attr_accessor :games, :books
+  attr_accessor :games, :books, :labels
 
   def initialize()
     @games = []
     @music_albums = []
     @games = []
     @books = []
+    @labels = []
     @functions = {
       1 => :list_all_books,
       3 => :list_all_games,
+      5 => :list_all_labels,
       7 => :add_item_book,
       8 => :add_item_music,
       9 => :add_item_game
@@ -48,6 +50,7 @@ class App
     publish_date = gets.chomp
 
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
+    @labels << @games.last.label
     puts ['Game created succesfully', '']
   end
 
@@ -73,6 +76,7 @@ class App
     publish_date = gets.chomp
 
     @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+    @labels << @books.last.label
     puts ['Book created succesfully', '']
   end
 
@@ -93,6 +97,17 @@ class App
     else
       @books.each do |book|
         print "Title: '#{book.label.title}, Author: '#{book.author.first_name}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_labels
+    if @labels.empty?
+      puts 'There are not labels created yet'
+    else
+      @labels.each do |label|
+        print "Title: '#{label.title}, Color: '#{label.color}'"
         puts ''
       end
     end
