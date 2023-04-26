@@ -1,7 +1,8 @@
 require 'date'
 
 class Item
-  attr_reader :publish_date, :author, :label, :genre
+  attr_reader :publish_date, :label, :genre
+  attr_accessor :author
 
   def initialize(publish_date)
     @publish_date = publish_date
@@ -18,7 +19,7 @@ class Item
     before = Date.parse(publish_date.to_s)
     difference = (now - before).to_i
     difference_year = difference / 365
-    difference_year >= 10
+    difference_year < 10
   end
 
   def move_to_archive()
