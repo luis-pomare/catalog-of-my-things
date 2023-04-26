@@ -46,28 +46,28 @@ class App
 
     Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
   end
-
+  
   def add_item_music()
     on_spotify = input_getter('Is this album on spotify? [Y/N]: ')
     return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
-
+    
     on_spotify_boolean = on_spotify.capitalize == 'Y'
-
+    
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
     MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
   end
-
+  
   def add_item_book()
     print 'Please enter the publisher: '
     publisher = gets.chomp
-
+    
     print 'Describe the cover state of the book: '
     cover_state = gets.chomp
-
+    
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
-
+    
     Book.new(Date.new(publish_date.to_i), publisher, cover_state)
   end
 end
