@@ -1,5 +1,5 @@
 class App
-  attr_accessor :games, :books, :labels
+  attr_accessor :games, :books, :labels, :authors
 
   def initialize()
     @games = []
@@ -7,10 +7,12 @@ class App
     @games = []
     @books = []
     @labels = []
+    @authors = []
     @functions = {
       1 => :list_all_books,
       3 => :list_all_games,
       5 => :list_all_labels,
+      6 => :list_all_authors,
       7 => :add_item_book,
       8 => :add_item_music,
       9 => :add_item_game
@@ -51,6 +53,7 @@ class App
 
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
     @labels << @games.last.label
+    @authors << @games.last.author
     puts ['Game created succesfully', '']
   end
 
@@ -77,6 +80,7 @@ class App
 
     @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
     @labels << @books.last.label
+    @authors << @books.last.author
     puts ['Book created succesfully', '']
   end
 
@@ -85,7 +89,18 @@ class App
       puts 'There are not created games yet'
     else
       @games.each do |game|
-        print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+        print "Title: '#{game.label.title}, Author: '#{game.author.first_name} #{game.author.last_name}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_authors
+    if @authors.empty?
+      puts 'There are not authors created yet'
+    else
+      @authors.each do |author|
+        print "[Author]: '#{author.first_name} #{author.last_name}'"
         puts ''
       end
     end
