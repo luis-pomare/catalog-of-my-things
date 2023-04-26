@@ -7,6 +7,7 @@ require './genre'
 require 'date'
 require './book'
 require './label'
+require './storage'
 require 'json'
 
 puts 'Welcome to Catalog of my things!'
@@ -21,10 +22,10 @@ def options
 end
 
 def write_files
-  @app.create_file(@app.games, 'games.json')
-  @app.create_file(@app.authors, 'authors.json')
-  @app.create_file(@app.books, 'books.json')
-  @app.create_file(@app.labels, 'labels.json')
+  @app.storage.create_file(@app.games, 'games.json')
+  @app.storage.create_file(@app.authors, 'authors.json')
+  @app.storage.create_file(@app.books, 'books.json')
+  @app.storage.create_file(@app.labels, 'labels.json')
 end
 
 def main

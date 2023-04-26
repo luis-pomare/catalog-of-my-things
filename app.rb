@@ -1,7 +1,9 @@
+require './music_methods'
 class App
-  attr_accessor :games, :books, :labels, :authors, :genre
+  attr_accessor :games, :books, :labels, :authors, :genre, :music_albums, :storage
 
   def initialize()
+    @storage = Storage.new('storage')
     @music_albums = []
     @genre = []
     @games = []
@@ -10,9 +12,9 @@ class App
     @authors = []
     @functions = {
       1 => :list_all_books,
-      2 => :list_all_album,
+      2 => :display_albums,
       3 => :list_all_games,
-      4 => :list_all_genres,
+      4 => :display_genre,
       5 => :list_all_labels,
       6 => :list_all_authors,
       7 => :add_item_book,
