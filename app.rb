@@ -1,9 +1,9 @@
 class App
-  attr_accessor :games, :books, :labels, :authors
+  attr_accessor :games, :books, :labels, :authors, :genre
 
   def initialize()
-    @games = []
     @music_albums = []
+    @genre = []
     @games = []
     @books = []
     @labels = []
@@ -21,17 +21,6 @@ class App
 
   def trigger(int)
     send(@functions[int])
-  end
-
-  def list_genres
-    if @genres2.nil? || @genres2.empty?
-      puts 'No genres have been added yet.'
-    else
-      puts 'Current genres:'
-      @genres2.each_with_index do |genre, index|
-        puts "#{index + 1}. Genre:#{genre.name}. Album Name:#{genre.album_name}. On Spotify?#{genre.on_spotify}"
-      end
-    end
   end
 
   def input_getter(msj, is_number: false)
@@ -54,6 +43,7 @@ class App
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
     @labels << @games.last.label
     @authors << @games.last.author
+    @genre << @games.last.genre
     puts ['Game created succesfully', '']
   end
 
@@ -65,7 +55,11 @@ class App
 
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
-    MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
+    @music_albums << MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
+    @labels << @music_albums.last.label
+    @authors << @music_albums.last.author
+    @genre << @music_albums.last.genre
+    puts ['Music Album created succesfully', '']
   end
 
   def add_item_book()
@@ -81,6 +75,7 @@ class App
     @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
     @labels << @books.last.label
     @authors << @books.last.author
+    @genre << @books.last.genre
     puts ['Book created succesfully', '']
   end
 
@@ -123,6 +118,17 @@ class App
     else
       @labels.each do |label|
         print "Title: '#{label.title}, Color: '#{label.color}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_genres
+    if @genre.empty?
+      puts 'There are not genres created yet'
+    else
+      @genre.each do |genre|
+        print "Genre: '#{genre.name}'"
         puts ''
       end
     end
