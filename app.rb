@@ -146,4 +146,26 @@ class App
       end
     end
   end
+
+  def create_file(array, name)
+    array_hash = []
+    array.each do |item|
+      array_hash << item_to_json(item)
+    end
+    json = array_hash.to_json
+    File.write("./storage/#{name}", json)
+  end
+
+  def item_to_json(item)
+    json_obj = {}
+    item.instance_variables.each do |var|
+      json_obj[var.to_s.gsub('@', '')] = if item.instance_variable_get(var).instance_variables.empty?
+                                           item.instance_variable_get(var)
+                                         else
+                                           item_to_json(item.instance_variable_get(var))
+                                         end
+    end
+    json_obj
+  end
+
 end

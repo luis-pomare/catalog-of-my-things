@@ -7,6 +7,7 @@ require './genre'
 require 'date'
 require './book'
 require './label'
+require 'json'
 
 puts 'Welcome to Catalog of my things!'
 
@@ -19,6 +20,11 @@ def options
   puts ['10 - Exit']
 end
 
+def write_files
+  @app.create_file(@app.games, 'games.json')
+  @app.create_file(@app.authors, 'authors.json')
+end
+
 def main
   @app = App.new if @app.nil?
   options
@@ -26,6 +32,7 @@ def main
   valid_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   if valid_options.include?(option)
     if option == 10
+      write_files
       puts 'Thanks for using this app'
     else
       @app.trigger(option)
