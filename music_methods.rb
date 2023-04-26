@@ -1,3 +1,4 @@
+require_relative 'app'
 def add_item_music()
   on_spotify = input_getter('Is this album on Spotify? [Y/N]: ')
   return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
@@ -6,6 +7,7 @@ def add_item_music()
   puts 'published date (yyyy-mm-dd): '
   publish_date = gets.chomp
   data = MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
+  inputs(data)
   music_albums = []
   if File.exist?('music_albums.json')
     File.open('music_albums.json', 'r') do |f|
