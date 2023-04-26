@@ -1,13 +1,18 @@
 class App
-  attr_accessor :games
+  attr_accessor :games, :books, :labels, :authors
 
   def initialize()
     @games = []
     @music_albums = []
+    @games = []
     @books = []
+    @labels = []
+    @authors = []
     @functions = {
+      1 => :list_all_books,
       3 => :list_all_games,
-      6=> :list_all_authors,
+      5 => :list_all_labels,
+      6 => :list_all_authors,
       7 => :add_item_book,
       8 => :add_item_music,
       9 => :add_item_game
@@ -47,6 +52,8 @@ class App
     publish_date = gets.chomp
 
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
+    @labels << @games.last.label
+    @authors << @games.last.author
     puts ['Game created succesfully', '']
   end
 
@@ -71,7 +78,10 @@ class App
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
 
-    Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+    @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+    @labels << @books.last.label
+    @authors << @books.last.author
+    puts ['Book created succesfully', '']
   end
 
   def list_all_games
@@ -86,26 +96,35 @@ class App
   end
 
   def list_all_authors
-    items = @games + @books + @music_albums
-    if items.empty?
-      puts 'There are not created Authors yet'
+    if @authors.empty?
+      puts 'There are not authors created yet'
     else
-      authors = create_authors_list(items)
-      authors.each do |author|
-        print "[Author]: '#{author}'"
+      @authors.each do |author|
+        print "[Author]: '#{author.first_name} #{author.last_name}'"
         puts ''
       end
     end
   end
 
-  def create_authors_list(items)
-    authors = []
-    items.each do |item|
-      author_full = item.author.first_name + ' ' + item.author.last_name
-      unless authors.include?(author_full)
-        authors << author_full
+  def list_all_books
+    if @books.empty?
+      puts 'There are not books created yet'
+    else
+      @books.each do |book|
+        print "Title: '#{book.label.title}, Author: '#{book.author.first_name}'"
+        puts ''
       end
     end
-    authors
+  end
+
+  def list_all_labels
+    if @labels.empty?
+      puts 'There are not labels created yet'
+    else
+      @labels.each do |label|
+        print "Title: '#{label.title}, Color: '#{label.color}'"
+        puts ''
+      end
+    end
   end
 end
