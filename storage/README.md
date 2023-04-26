@@ -1,0 +1,1 @@
+# This is a storage folder to sotre the files created by closing the app after sessions
