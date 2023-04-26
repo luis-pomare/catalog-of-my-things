@@ -23,6 +23,8 @@ end
 def write_files
   @app.create_file(@app.games, 'games.json')
   @app.create_file(@app.authors, 'authors.json')
+  @app.create_file(@app.books, 'books.json')
+  @app.create_file(@app.labels, 'labels.json')
 end
 
 def main
