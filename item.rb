@@ -26,9 +26,9 @@ class Item
   end
 
   def add_author()
-    print 'Insert first name: '
+    print 'Insert author first name: '
     first_name = gets.chomp
-    print 'Insert last name: '
+    print 'Insert author last name: '
     last_name = gets.chomp
     Author.new(first_name, last_name)
   end

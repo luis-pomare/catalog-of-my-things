@@ -1,14 +1,15 @@
 class App
-  attr_accessor :items
+  attr_accessor :games
 
-  def initialize
+  def initialize()
     @games = []
     @music_albums = []
-    @books = []
+    @games = []
     @functions = {
-      8 => :add_item_book,
-      9 => :add_item_music,
-      10 => :add_item_game
+      3 => :list_all_games,
+      7 => :add_item_book,
+      8 => :add_item_music,
+      9 => :add_item_game
     }
   end
 
@@ -44,7 +45,8 @@ class App
     print 'Publucation date (yyyy-mm-dd): '
     publish_date = gets.chomp
 
-    Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
+    @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
+    puts ['Game created succesfully', '']
   end
   
   def add_item_music()
@@ -69,5 +71,16 @@ class App
     publish_date = gets.chomp
     
     Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+  end
+
+  def list_all_games
+    if @games.empty?
+      puts 'There are not created games yet'
+    else
+      @games.each do |game|
+        print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+        puts ''
+      end
+    end
   end
 end
