@@ -1,5 +1,6 @@
+require './music_methods'
 class App
-  attr_accessor :games, :books, :labels, :authors, :genre
+  attr_accessor :games, :books, :labels, :authors, :genre, :music_albums
 
   def initialize()
     @music_albums = []
@@ -10,9 +11,9 @@ class App
     @authors = []
     @functions = {
       1 => :list_all_books,
-      2 => :list_all_album,
+      2 => :display_albums,
       3 => :list_all_games,
-      4 => :list_all_genres,
+      4 => :display_genre,
       5 => :list_all_labels,
       6 => :list_all_authors,
       7 => :add_item_book,
@@ -47,21 +48,6 @@ class App
     @authors << @games.last.author
     @genre << @games.last.genre
     puts ['Game created succesfully', '']
-  end
-
-  def add_item_music()
-    on_spotify = input_getter('Is this album on spotify? [Y/N]: ')
-    return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
-
-    on_spotify_boolean = on_spotify.capitalize == 'Y'
-
-    print 'published date (yyyy-mm-dd): '
-    publish_date = gets.chomp
-    @music_albums << MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
-    @labels << @music_albums.last.label
-    @authors << @music_albums.last.author
-    @genre << @music_albums.last.genre
-    puts ['Music Album created succesfully', '']
   end
 
   def add_item_book()
@@ -120,28 +106,6 @@ class App
     else
       @labels.each do |label|
         print "Title: '#{label.title}, Color: '#{label.color}'"
-        puts ''
-      end
-    end
-  end
-
-  def list_all_genres
-    if @genre.empty?
-      puts 'There are not genres created yet'
-    else
-      @genre.each do |genre|
-        print "Genre: '#{genre.name}'"
-        puts ''
-      end
-    end
-  end
-
-  def list_all_album
-    if @music_albums.empty?
-      puts 'There are not albums created yet'
-    else
-      @music_albums.each do |album|
-        print "Albums: '#{album.label.title}' Author: '#{album.author.first_name}'"
         puts ''
       end
     end
