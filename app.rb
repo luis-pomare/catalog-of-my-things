@@ -7,6 +7,7 @@ class App
     @games = []
     @books = []
     @functions = {
+      1 => :list_all_books,
       3 => :list_all_games,
       7 => :add_item_book,
       8 => :add_item_music,
@@ -49,28 +50,28 @@ class App
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
     puts ['Game created succesfully', '']
   end
-  
+
   def add_item_music()
     on_spotify = input_getter('Is this album on spotify? [Y/N]: ')
     return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
-    
+
     on_spotify_boolean = on_spotify.capitalize == 'Y'
-    
+
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
     MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
   end
-  
+
   def add_item_book()
     print 'Please enter the publisher: '
     publisher = gets.chomp
-    
+
     print 'Describe the cover state of the book: '
     cover_state = gets.chomp
-    
+
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
-    
+
     @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
     puts ['Book created succesfully', '']
   end
@@ -81,6 +82,17 @@ class App
     else
       @games.each do |game|
         print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_books
+    if @books.empty?
+      puts 'There are not books created yet'
+    else
+      @books.each do |book|
+        print "Title: '#{book.label.title}, Author: '#{book.author.first_name}'"
         puts ''
       end
     end
