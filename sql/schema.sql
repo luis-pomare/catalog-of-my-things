@@ -34,3 +34,15 @@ CREATE TABLE book (
   publisher varchar(150),
   cover_state varchar(150)
 );
+
+CREATE TABLE Genre (
+  id serial PRIMARY KEY,
+  name varchar(255)
+);
+ALTER TABLE Item ADD COLUMN genre_id integer REFERENCES Genre(id);
+
+CREATE TABLE musicalbum (
+   id SERIAL PRIMARY KEY,
+   on_spotify BOOLEAN NOT NULL DEFAULT FALSE
+);
+ALTER TABLE musicalbum ADD COLUMN music_id integer REFERENCES Item(id);
