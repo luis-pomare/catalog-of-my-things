@@ -58,17 +58,6 @@ class App
     puts ['Game created succesfully', '']
   end
 
-  def add_item_music()
-    on_spotify = input_getter('Is this album on spotify? [Y/N]: ')
-    return add_item_music if on_spotify.capitalize != 'Y' && on_spotify.capitalize != 'N'
-
-    on_spotify_boolean = on_spotify.capitalize == 'Y'
-    publish_date = input_getter('Publucation date (yyyy-mm-dd): ')
-    @music_albums << MusicAlbum.new(on_spotify_boolean, Date.new(publish_date.to_i))
-    inputs(@music_albums.last)
-    puts ['Music Album created succesfully', '']
-  end
-
   def add_item_book()
     publisher = input_getter('Please enter the publisher: ')
     cover_state = input_getter('Describe the cover state of the book: ')
@@ -117,28 +106,6 @@ class App
     else
       @labels.each do |label|
         print "Title: '#{label.title}, Color: '#{label.color}'"
-        puts ''
-      end
-    end
-  end
-
-  def list_all_genres
-    if @genre.empty?
-      puts 'There are not genres created yet'
-    else
-      @genre.each do |genre|
-        print "Genre: '#{genre.name}'"
-        puts ''
-      end
-    end
-  end
-
-  def list_all_album
-    if @music_albums.empty?
-      puts 'There are not albums created yet'
-    else
-      @music_albums.each do |album|
-        print "Albums: '#{album.label.title}' Author: '#{album.author.first_name}'"
         puts ''
       end
     end
