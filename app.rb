@@ -1,10 +1,11 @@
 class App
-  attr_accessor :games
+  attr_accessor :games, :books
 
   def initialize()
     @games = []
     @music_albums = []
     @games = []
+    @books = []
     @functions = {
       3 => :list_all_games,
       7 => :add_item_book,
@@ -70,7 +71,8 @@ class App
     print 'published date (yyyy-mm-dd): '
     publish_date = gets.chomp
     
-    Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+    @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
+    puts ['Book created succesfully', '']
   end
 
   def list_all_games

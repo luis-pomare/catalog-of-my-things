@@ -7,6 +7,7 @@ require './genre'
 require 'date'
 require './book'
 require './label'
+require 'pry'
 
 puts 'Welcome to Catalog of my things!'
 
@@ -29,6 +30,7 @@ def main
       puts 'Thanks for using this app'
     else
       @app.trigger(option)
+      binding.pry
       main
     end
   else
