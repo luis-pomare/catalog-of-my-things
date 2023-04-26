@@ -60,29 +60,11 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 Catalog of my things <a name="about-project"></a>
 
-> This is a console interface app that allows the user to store a collection of Items they own. The idea is to set the different attributes for each type of item such as author, genre, .
-
-**[your_project__name]** is a...
+**Catalog of my things** is a console interface app that allows the user to store a collection of Items they own. The idea is to set the different attributes for each type of item such as author, genre, labels and more.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
-
-> Describe the tech stack and include only the relevant sections that apply to your project.
-
-<details>
-  <summary>Client</summary>
-  <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
-  </ul>
-</details>
-
-<details>
-  <summary>Server</summary>
-  <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
-  </ul>
-</details>
 
 <details>
 <summary>Database</summary>
