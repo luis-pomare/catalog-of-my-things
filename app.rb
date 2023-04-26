@@ -4,7 +4,7 @@ class App
   def initialize()
     @games = []
     @music_albums = []
-    @games = []
+    @books = []
     @functions = {
       3 => :list_all_games,
       7 => :add_item_book,
@@ -74,6 +74,17 @@ class App
   end
 
   def list_all_games
+    if @games.empty?
+      puts 'There are not created games yet'
+    else
+      @games.each do |game|
+        print "Title: '#{game.label.title}, Author: '#{game.author.first_name}'"
+        puts ''
+      end
+    end
+  end
+
+  def list_all_authors
     if @games.empty?
       puts 'There are not created games yet'
     else
