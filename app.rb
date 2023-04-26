@@ -167,5 +167,4 @@ class App
     end
     json_obj
   end
-
 end
