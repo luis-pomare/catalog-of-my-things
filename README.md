@@ -47,7 +47,6 @@ After you're finished please remove all the comments and instructions!
   - [Install](#install)
   - [Usage](#usage)
   - [Run tests](#run-tests)
-  - [Deployment](#deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
@@ -73,15 +72,27 @@ After you're finished please remove all the comments and instructions!
   </ul>
 </details>
 
+<details>
+<summary>Codebase</summary>
+  <ul>
+    <li><a href="https://www.ruby-lang.org/en//">Ruby</a></li>
+  </ul>
+</details>
+
+<details>
+<summary>Linter checks</summary>
+  <ul>
+    <li><a href="https://github.com/rubocop">Rubocop</a></li>
+  </ul>
+</details>
+
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **Comand line interface**
+- **Respect for the SOLID principles**
+- **SQL schema available**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -89,9 +100,7 @@ After you're finished please remove all the comments and instructions!
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
-
-- [Live Demo Link](https://google.com)
+- This is a command-line application so you will need to download it to use it.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -99,13 +108,16 @@ After you're finished please remove all the comments and instructions!
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
-
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-In order to run this project you need:
+You need the following tools installed in your computer:
+
+> - [Git](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/)
+> - [Ruby](https://github.com/microverseinc/curriculum-ruby/blob/main/simple-ruby/articles/ruby_installation_instructions.md)
+> - [IDE](https://www.https://code.visualstudio.com/)
+> - [ProgreSQL (only if you want to create the tables from schema.sql)](https://www.https://code.visualstudio.com/)
 
 <!--
 Example command:
@@ -119,63 +131,38 @@ Example command:
 
 Clone this repository to your desired folder:
 
-<!--
-Example commands:
-
 ```sh
-  cd my-folder
-  git clone git@github.com:myaccount/my-project.git
+  cd my-prefered-folder
+
+  git clone https://github.com/luis-pomare/catalog-of-my-things.git
+
 ```
---->
 
 ### Install
 
 Install this project with:
 
-<!--
-Example command:
-
 ```sh
-  cd my-project
-  gem install
+  cd catalog-of-my-things
+
+  bundle install
 ```
---->
 
 ### Usage
 
 To run the project, execute the following command:
 
-<!--
-Example command:
-
 ```sh
-  rails server
+  ruby main.rb
 ```
---->
 
 ### Run tests
 
 To run tests, run the following command:
 
-<!--
-Example command:
-
 ```sh
-  bin/rails test test/models/article_test.rb
+  rspec spec/
 ```
---->
-
-### Deployment
-
-You can deploy this project using:
-
-<!--
-Example:
-
-```sh
-
-```
- -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -183,13 +170,11 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+👤 **ANAS ALSAMMARRAIE**
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@anas599](https://github.com/anas599)
+- Twitter: [@anas599](https://twitter.com/anas599)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/anas1993/)
 
 👤 **Author2**
 
