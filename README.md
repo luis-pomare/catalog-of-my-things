@@ -31,6 +31,10 @@
 
 **Catalog of my things** is a console interface app that allows the user to store a collection of Items they own. The idea is to set the different attributes for each type of item such as author, genre, labels and more.
 
+## Demo video
+
+[Demo video](https://drive.google.com/file/d/14Pjjj_wD1sgVMaGiGnETCDdcDn9gjAUT/view?usp=sharing)
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -176,3 +180,4 @@ I would like to thank all the microverse staff that gave us the bases for the pr
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
