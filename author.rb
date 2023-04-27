@@ -10,6 +10,6 @@ class Author
 
   def add_item(item)
     @items << item if @items.include?(item) == false
-    item[:author] = self
+    item.author = self
   end
 end

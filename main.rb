@@ -7,6 +7,7 @@ require './genre'
 require 'date'
 require './book'
 require './label'
+require './storage'
 require 'json'
 
 puts 'Welcome to Catalog of my things!'
@@ -20,15 +21,22 @@ def options
   puts ['10 - Exit']
 end
 
+def read_files(app)
+  @app.storage.retrieve_data(app)
+end
+
 def write_files
-  @app.create_file(@app.games, 'games.json')
-  @app.create_file(@app.authors, 'authors.json')
-  @app.create_file(@app.books, 'books.json')
-  @app.create_file(@app.labels, 'labels.json')
+  @app.storage.create_file(@app.games, 'games.json')
+  @app.storage.create_file(@app.authors, 'authors.json')
+  @app.storage.create_file(@app.books, 'books.json')
+  @app.storage.create_file(@app.labels, 'labels.json')
 end
 
 def main
-  @app = App.new if @app.nil?
+  if @app.nil?
+    @app = App.new
+    read_files(@app)
+  end
   options
   option = gets.chomp.to_i
   valid_options = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]

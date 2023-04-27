@@ -1,8 +1,9 @@
 require './music_methods'
 class App
-  attr_accessor :games, :books, :labels, :authors, :genre, :music_albums
+  attr_accessor :games, :books, :labels, :authors, :genre, :music_albums, :storage
 
   def initialize()
+    @storage = Storage.new('storage')
     @music_albums = []
     @genre = []
     @games = []
@@ -31,39 +32,38 @@ class App
     is_number ? gets.chomp.to_i : gets.chomp
   end
 
+  def inputs(item)
+    label = input_getter('Enter a label name: ')
+    color = input_getter('Enter a label color: ')
+    genre = input_getter('Enter a genre: ')
+    first_name = input_getter('Author first_name: ')
+    last_name = input_getter('Author last_name: ')
+    item.add_author(first_name, last_name)
+    item.add_genre(genre)
+    item.add_label(label, color)
+    @labels << item.label
+    @authors << item.author
+    @genre << item.genre
+  end
+
   def add_item_game()
     multiplayer = input_getter('Is this game multiplayer? [Y/N]: ')
     return add_item_game if multiplayer.capitalize != 'Y' && multiplayer.capitalize != 'N'
 
     multiplayer_bool = multiplayer.capitalize == 'Y'
-
-    print 'Last time played date (yyyy-mm-dd): '
-    last_played_at = gets.chomp
-
-    print 'Publucation date (yyyy-mm-dd): '
-    publish_date = gets.chomp
-
+    last_played_at = input_getter('Last time played date (yyyy-mm-dd): ')
+    publish_date = input_getter('Publucation date (yyyy-mm-dd): ')
     @games << Game.new(multiplayer_bool, last_played_at, Date.new(publish_date.to_i))
-    @labels << @games.last.label
-    @authors << @games.last.author
-    @genre << @games.last.genre
+    inputs(@games.last)
     puts ['Game created succesfully', '']
   end
 
   def add_item_book()
-    print 'Please enter the publisher: '
-    publisher = gets.chomp
-
-    print 'Describe the cover state of the book: '
-    cover_state = gets.chomp
-
-    print 'published date (yyyy-mm-dd): '
-    publish_date = gets.chomp
-
+    publisher = input_getter('Please enter the publisher: ')
+    cover_state = input_getter('Describe the cover state of the book: ')
+    publish_date = input_getter('published date (yyyy-mm-dd): ')
     @books << Book.new(Date.new(publish_date.to_i), publisher, cover_state)
-    @labels << @books.last.label
-    @authors << @books.last.author
-    @genre << @books.last.genre
+    inputs(@books.last)
     puts ['Book created succesfully', '']
   end
 
@@ -109,26 +109,5 @@ class App
         puts ''
       end
     end
-  end
-
-  def create_file(array, name)
-    array_hash = []
-    array.each do |item|
-      array_hash << item_to_json(item)
-    end
-    json = array_hash.to_json
-    File.write("./storage/#{name}", json)
-  end
-
-  def item_to_json(item)
-    json_obj = {}
-    item.instance_variables.each do |var|
-      json_obj[var.to_s.gsub('@', '')] = if item.instance_variable_get(var).instance_variables.empty?
-                                           item.instance_variable_get(var)
-                                         else
-                                           item_to_json(item.instance_variable_get(var))
-                                         end
-    end
-    json_obj
   end
 end
